@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Công Ty Đồ Ăn Nhật Bản</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    header {
+      background: linear-gradient(to right, #FFD700, #FFA500);
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 48px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      animation: fadeInDown 1s ease-out;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    header p {
+      font-size: 18px;
+      font-weight: 300;
+      opacity: 0.8;
+      animation: fadeIn 1s ease-out 0.5s;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    nav {
+      background-color: #333;
+      padding: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+    }
+
+    nav li {
+      margin: 0 15px;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeInUp 1s ease-out 0.5s forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      font-size: 16px;
+      transition: color 0.3s ease-in-out;
+      position: relative;
+      letter-spacing: 1px;
+    }
+
+    nav a:hover {
+      color: #FFD700;
+      transform: scale(1.1);
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      width: 0;
+      height: 4px;
+      background-color: #FFD700;
+      transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+      transform: translateX(-50%);
+    }
+
+    nav a:hover::before {
+      width: 100%;
+      left: 0;
+    }
+
+    .search-container {
+      position: relative;
+    }
+
+    .search-input {
+      padding: 8px;
+      border: none;
+      border-radius: 20px;
+      margin-right: 10px;
+      width: 200px;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeInUp 1s ease-out 1s forwards;
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 20px;
+    }
+
+    article {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin: 10px;
+      padding: 15px;
+      width: 300px;
+      transition: transform 0.3s ease-in-out;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeInUp 1s ease-out 0.5s forwards;
+    }
+
+    article:hover {
+      transform: scale(1.05);
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    p {
+      color: #666;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .stars {
+      color: #FFD700;
+      margin-right: 5px;
+    }
+
+    .add-to-cart {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .add-to-cart:hover {
+      background-color: #FFD700;
+    }
+
+    .reviews {
+      margin-top: 30px;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeInUp 1s ease-out 0.5s forwards;
+    }
+
+    .review-card {
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin: 10px;
+      padding: 15px;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .review-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .review-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .review-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .review-text {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .ad-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      margin-top: 30px;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeInUp 1s ease-out 0.5s forwards;
+    }
+
+    .ad {
+      text-align: center;
+    }
+
+    .ad img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .ad-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .ad-description {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Công Ty Đồ Ăn Nhật Bản</h1>
+    <p>Khám phá hương vị truyền thống!</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#">Giới Thiệu </a></li>
+      <li><a href="#">Tư Vấn </a></li>
+      <li><a href="#">Menu </a></li>
+      <li><a href="#">Sushi</a></li>
+      <li><a href="#">Sashimi</a></li>
+      <li><a href="#">Ramen</a></li>
+      <li><a href="#">Bento</a></li>
+    </ul>
+
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Tìm kiếm...">
+      <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/d3a5a08b-4878-48af-b76b-8aff5871fc75/darqav1-2a889bed-3058-4526-b460-223ac59d78ec.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2QzYTVhMDhiLTQ4NzgtNDhhZi1iNzZiLThhZmY1ODcxZmM3NVwvZGFycWF2MS0yYTg4OWJlZC0zMDU4LTQ1MjYtYjQ2MC0yMjNhYzU5ZDc4ZWMuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.0R1OOLVoXROZnPzWX8hUChpY56ZhUnN6jccNFEyTq84" alt="Search" class="search-icon">
+    </div>
+  </nav>
+
+  <section>
+    <article>
+      <img src="https://scontent.fsgn2-11.fna.fbcdn.net/v/t1.15752-9/410688829_1417135132537087_6102845347891072301_n.png?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_ohc=d0g84XfUzLsAX9D77aP&_nc_ht=scontent.fsgn2-11.fna&oh=03_AdR3QG0Sur5HM2E0ohHpCLMtxp6-CfZ0MQkvBNCJSgSprg&oe=6618B97F" alt="Sushi">
+      <h2>Sushi</h2>
+      <p>Ăn ngon và đầy đủ hợp với giá tiền </p>
+      <p>Giá: 550.000 VND</p>
+      <div class="rating">
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span>5 đánh giá</span>
+      </div>
+      <button class="add-to-cart">Thêm</button>
+      <button class="add-to-cart">Mua Ngay</button>
+    </article>
+
+    <article>
+      <img src="https://scontent.fsgn2-10.fna.fbcdn.net/v/t1.15752-9/411532263_1116558989773225_2812389920019332184_n.png?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=NkxoofGIxXcAX--9Foa&_nc_ht=scontent.fsgn2-10.fna&oh=03_AdRcUY8lmI_tHaE-MHtkJdYvMarL1ZkBfHIkpCrY_-Uw-w&oe=6618C8C2" alt="Sashimi">
+      <h2>Combo Heo Quay Nguyên Con Japan style food</h2>
+      <p>Heo ở Nhật Nhưng Xuất Khẩu và được chế biến ở Việt Nam</p>
+      <p>Giá: 234.000 VND</p>
+      <div class="rating">
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+        <span>4 đánh giá</span>
+      </div>
+      <button class="add-to-cart">Thêm </button>
+      <button class="add-to-cart">Mua Ngay</button>
+    </article>
+
+    <article>
+      <img src="https://scontent.fsgn2-5.fna.fbcdn.net/v/t1.15752-9/412677491_678926767428177_7926626505923014858_n.png?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_ohc=P40TUT20FwkAX9f99av&_nc_oc=AQlTsnHvq_1al0zN183FaA2eViTByyuHVFCfS_cqm-2ckSHSACMIg_6lV3UhBCRGukA&_nc_ht=scontent.fsgn2-5.fna&oh=03_AdQ_SQgHZn3AxmaXxVzFvilT2Vy8g9ssxbSL12WVn_mcyQ&oe=6618AF67" alt="Ramen">
+      <h2>Combo Sushi Nhật</h2>
+      <p>Sushi Style Nhật Bản</p>
+      <p>Giá: 500.000 VND</p>
+      <div class="rating">
+        <span class="stars">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
+        <span>3 đánh giá</span>
+      </div>
+      <button class="add-to-cart">Thêm </button>
+      <button class="add-to-cart">Mua Ngay</button>
+    </article>
+
+    <article>
+      <img src="https://scontent.fsgn2-9.fna.fbcdn.net/v/t1.15752-9/403402108_695435799037280_3425029432539915300_n.png?_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_ohc=lfejMEcnxAYAX-keoV_&_nc_ht=scontent.fsgn2-9.fna&oh=03_AdRilI1enMzYM4BHtSdgZ-V7YEmCXp9K7MsYRr6mfkhN5w&oe=6618C032" alt="Bento">
+      <h2>Mỳ Tương Đen Hàn Quốc Theo Style Japan Food</h2>
+      <p>Mỳ Tương Đen</p>
+      <p>Giá: 119.000 VND</p>
+      <div class="rating">
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span>5 đánh giá</span>
+      </div>
+      <button class="add-to-cart">Thêm </button>
+      <button class="add-to-cart">Mua Ngay</button>
+    </article>
+    <article>
+        <img src="https://scontent.fsgn2-10.fna.fbcdn.net/v/t1.15752-9/410390790_290143303552719_7231859294600306926_n.png?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ljG1KUKJCAEAX-37yoV&_nc_ht=scontent.fsgn2-10.fna&oh=03_AdRHfdvyV4hTPOFx3DuX4qG_ys1CAWBd1zmsbmvCoUm02w&oe=6618D008" alt="Bento">
+        <h2>Combo Lẩu Tok Nhật Bản</h2>
+        <p>Combo Lẩu Tok.</p>
+        <p>Giá: 200.000 VND</p>
+        <div class="rating">
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>5 đánh giá</span>
+        </div>
+        <button class="add-to-cart">Thêm </button>
+        <button class="add-to-cart">Mua Ngay</button>
+      </article>
+      <article>
+        <img src="https://scontent.fsgn2-4.fna.fbcdn.net/v/t1.15752-9/412651823_728849402159374_6383996899915614315_n.png?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=C9pYRVP3JU0AX-IIBI1&_nc_ht=scontent.fsgn2-4.fna&oh=03_AdRjI3x13p9zECpdvfFhzac7Bvy042erk5qh_XUi6wsb2w&oe=6618A272" alt="Bento">
+        <h2>Bò cuộn full phô maii</h2>
+        <p>Cuộn Full Phô Mai cùng với những nguyên liệu đặc biệt</p>
+        <p>Giá: 150.000 VND</p>
+        <div class="rating">
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>5 đánh giá</span>
+        </div>
+        <button class="add-to-cart">Thêm vào giỏ hàng</button>
+        <button class="add-to-cart">Mua Ngay</button>
+      </article>
+      <article>
+        <img src="https://scontent.fsgn2-4.fna.fbcdn.net/v/t1.15752-9/412651823_728849402159374_6383996899915614315_n.png?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=C9pYRVP3JU0AX-IIBI1&_nc_ht=scontent.fsgn2-4.fna&oh=03_AdRjI3x13p9zECpdvfFhzac7Bvy042erk5qh_XUi6wsb2w&oe=6618A272" alt="Bento">
+        <h2>Combo Japan Food Vjp Pro</h2>
+        <p>Combo Japan Food</p>
+        <p>Giá: 200.000 VND</p>
+        <div class="rating">
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>5 đánh giá</span>
+        </div>
+        <button class="add-to-cart">Thêm </button>
+        <button class="add-to-cart">Mua Ngay</button>
+      </article>
+      <article>
+        <img src="https://scontent.fsgn2-9.fna.fbcdn.net/v/t1.15752-9/410718308_907400004335141_8888223891982500772_n.png?_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Y5co4iZV4fQAX_p9k3q&_nc_ht=scontent.fsgn2-9.fna&oh=03_AdRjJRWHbEgs7pWM5Z0AyeBX2Js-hFRYxtBHy9svIQ9IcQ&oe=6618AA86" alt="Bento">
+        <h2>Thịt Nướng Japan Food</h2>
+        <p>Thịt Nướng.</p>
+        <p>Giá: 120.000 VND</p>
+        <div class="rating">
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>5 đánh giá</span>
+        </div>
+        <button class="add-to-cart">Thêm </button>
+        <button class="add-to-cart">Mua Ngay</button>
+      </article>
+      <article>
+        <img src="https://scontent.fsgn2-9.fna.fbcdn.net/v/t1.15752-9/403416253_894802968598089_892924195411892650_n.png?_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_ohc=sk3kXlse93AAX_xuyPn&_nc_ht=scontent.fsgn2-9.fna&oh=03_AdRTHQS2yn7nweIJTFcSdThdF6VTB4wAW88JTodQ9KN5gQ&oe=6618BEFF" alt="Bento">
+        <h2>Trà Sữa Tràn Trân Châu Đặc Biệt</h2>
+        <p>Trà Sữa Tràn Trân Châu</p>
+        <p>Giá: 199.000 VND</p>
+        <div class="rating">
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>5 đánh giá</span>
+        </div>
+        <button class="add-to-cart">Thêm </button>
+        <button class="add-to-cart">Mua Ngay</button>
+      </article>
+      <article>
+        <img src="https://scontent.fsgn2-9.fna.fbcdn.net/v/t1.15752-9/410718308_907400004335141_8888223891982500772_n.png?_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Y5co4iZV4fQAX_p9k3q&_nc_ht=scontent.fsgn2-9.fna&oh=03_AdRjJRWHbEgs7pWM5Z0AyeBX2Js-hFRYxtBHy9svIQ9IcQ&oe=6618AA86" alt="Bento">
+        <h2>Mỳ Cay Hàn vị Nhật </h2>
+        <p>Mỳ Cay Hàn</p>
+        <p>Giá: 149.000 VND</p>
+        <div class="rating">
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>5 đánh giá</span>
+        </div>
+        <button class="add-to-cart">Thêm </button>
+        <button class="add-to-cart">Mua Ngay</button>
+      </article>
+      <article>
+        <img src="https://scontent.fsgn2-8.fna.fbcdn.net/v/t1.15752-9/410676724_1599700950863497_4438962041145679464_n.png?_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_ohc=4NLtLnpd7IsAX8O45Ft&_nc_ht=scontent.fsgn2-8.fna&oh=03_AdT9AT7Kgzm74-WrEjhAu5CMrnVO233GyrSm0qbpGKcG0Q&oe=6618B2C9" alt="Bento">
+        <h2>Bento</h2>
+        <p>Trứng Tràn trề</p>
+        <p>Giá: 200.000 VND</p>
+        <div class="rating">
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>5 đánh giá</span>
+        </div>
+        <button class="add-to-cart">Thêm </button>
+        <button class="add-to-cart">Mua Ngay</button>
+      </article>
+      <article>
+        <img src="https://scontent.fsgn2-8.fna.fbcdn.net/v/t1.15752-9/403612351_1301461213900844_7514183134635884023_n.png?_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_ohc=kjqMQ3siSCkAX_cIDt4&_nc_ht=scontent.fsgn2-8.fna&oh=03_AdSx2IG-vK0WM3WlGz8aaVaziHBml-PHcYuRYPVW29tpcQ&oe=66189B88" alt="Bento">
+        <h2>Bento</h2>
+        <p>FULL TOPPING bento.</p>
+        <p>Giá: 299.000 VND</p>
+        <div class="rating">
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>5 đánh giá</span>
+        </div>
+        <button class="add-to-cart">Thêm </button>
+        <button class="add-to-cart">Mua Ngay</button>
+      </article>
+  </section>
+
+  <div class="reviews">
+    <h2>Đánh giá và Bình luận</h2>
+    <div class="review-card">
+      <div class="review-avatar">
+        <img src="https://scontent.fsgn2-9.fna.fbcdn.net/v/t1.15752-9/412514018_385126767418669_2227723749540308168_n.png?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_ohc=IohoHFCqttgAX-C4yWj&_nc_ht=scontent.fsgn2-9.fna&oh=03_AdQP3aKJwVnm9wftUnkX4NlvTvO63C6awgItczx2tz8jew&oe=66189CB4" alt="User 1">
+      </div>
+      <p class="review-text">"Sushi tại đây rất ngon, chắc chắn sẽ quay lại!"</p>
+    </div>
+    <div class="review-card">
+        <div class="review-avatar">
+          <img src="https://scontent.fsgn2-8.fna.fbcdn.net/v/t1.15752-9/412758243_265286862971284_20354526811910486_n.png?_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GZL4sG0fIX4AX_AwItf&_nc_ht=scontent.fsgn2-8.fna&oh=03_AdRLe5_K5AHX6RZg9WiHUqVPR2F2MAOLn9_eCF1UipOV3Q&oe=6618B3F7" alt="User 1">
+        </div>
+        <p class="review-text">Rất đáng tiền dịch vụ cả đồ ăn</p>
+      </div>
+  </div>
+
+  <div class="ad-container">
+    <div class="ad">
+      <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/196176d7-d088-4c5e-b44a-69aaac4413b1/d13fry6-f09b55d9-1781-470c-9508-e46b1c42f129.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzE5NjE3NmQ3LWQwODgtNGM1ZS1iNDRhLTY5YWFhYzQ0MTNiMVwvZDEzZnJ5Ni1mMDliNTVkOS0xNzgxLTQ3MGMtOTUwOC1lNDZiMWM0MmYxMjkucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0._V2xNZOV5-CxQyw1Py5bAHiVL4eBx4d5VdYkGHDAJbc" alt="Ad 1">
+      
+      <div class="ad-title">Ưu đãi hấp dẫn</div>
+      <div class="ad-description">Mua 2 món sushi, tặng 1 món tráng miệng!</div>
+    </div>
+
+    <div class="ad">
+      <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/268d3768-e3f6-455c-8c36-8e128a12314b/dbcol30-a92d3ecc-419c-43bb-b507-c77dfd5e2216.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzI2OGQzNzY4LWUzZjYtNDU1Yy04YzM2LThlMTI4YTEyMzE0YlwvZGJjb2wzMC1hOTJkM2VjYy00MTljLTQzYmItYjUwNy1jNzdkZmQ1ZTIyMTYuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.d9lwOoWSCREExaKkUCmZVR_VQ8MaUdTVNs1q5yOnD58" alt="Ad 2">
+      <div class="ad-title">Khám phá hương vị mới</div>
+      <div class="ad-description">Món Ramen trứ danh, chỉ có tại Nhà hàng Nhật Bản.</div>
+    </div>
+  </div>
+
+  <footer>
+    <div>
+      <p>&copy; 2024 Công Ty Đồ Ăn Nhật Bản</p>
+      <p>Đà Nẵng , Việt Nam</p>
+    </div>
+    <div>
+      <p>Gmail: VanhBanDoNhat@gmail.com</p>
+      <p>NICKNAME: vanh</p>
+    </div>
+    <div>
+      <p>Follow us: <a href="#">Facebook</a>, <a href="#">Instagram</a>, <a href="#">Twitter</a></p>
+    </div>
+  </footer>
+<div style="text-align: right;position: fixed;z-index:9999999;bottom: 0;width: auto;right: 1%;cursor: pointer;line-height: 0;display:block !important;"><a title="Hosted on free web hosting 000webhost.com. Host your own website for FREE." target="_blank" href="https://www.000webhost.com/?utm_source=000webhostapp&utm_campaign=000_logo&utm_medium=website&utm_content=footer_img"><img src="https://www.000webhost.com/static/default.000webhost.com/images/powered-by-000webhost.png" alt="www.000webhost.com"></a></div><script>function getCookie(t){for(var e=t+"=",n=decodeURIComponent(document.cookie).split(";"),o=0;o<n.length;o++){for(var i=n[o];" "==i.charAt(0);)i=i.substring(1);if(0==i.indexOf(e))return i.substring(e.length,i.length)}return""}getCookie("hostinger")&&(document.cookie="hostinger=;expires=Thu, 01 Jan 1970 00:00:01 GMT;",location.reload());var wordpressAdminBody=document.getElementsByClassName("wp-admin")[0],notification=document.getElementsByClassName("notice notice-success is-dismissible"),hostingerLogo=document.getElementsByClassName("hlogo"),mainContent=document.getElementsByClassName("notice_content")[0];if(null!=wordpressAdminBody&¬ification.length>0&&null!=mainContent && new Date().toISOString().slice(0, 10) > '2023-10-29' && new Date().toISOString().slice(0, 10) < '2023-11-27'){var googleFont=document.createElement("link");googleFontHref=document.createAttribute("href"),googleFontRel=document.createAttribute("rel"),googleFontHref.value="https://fonts.googleapis.com/css?family=Roboto:300,400,600,700",googleFontRel.value="stylesheet",googleFont.setAttributeNode(googleFontHref),googleFont.setAttributeNode(googleFontRel);var css="@media only screen and (max-width: 576px) {#main_content {max-width: 320px !important;} #main_content h1 {font-size: 30px !important;} #main_content h2 {font-size: 40px !important; margin: 20px 0 !important;} #main_content p {font-size: 14px !important;} #main_content .content-wrapper {text-align: center !important;}} @media only screen and (max-width: 781px) {#main_content {margin: auto; justify-content: center; max-width: 445px;}} @media only screen and (max-width: 1325px) {.web-hosting-90-off-image-wrapper {position: absolute; max-width: 95% !important;} .notice_content {justify-content: center;} .web-hosting-90-off-image {opacity: 0.3;}} @media only screen and (min-width: 769px) {.notice_content {justify-content: space-between;} #main_content {margin-left: 5%; max-width: 445px;} .web-hosting-90-off-image-wrapper {position: absolute; display: flex; justify-content: center; width: 100%; }} .web-hosting-90-off-image {max-width: 90%;} .content-wrapper {min-height: 454px; display: flex; flex-direction: column; justify-content: center; z-index: 5} .notice_content {display: flex; align-items: center;} * {-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;} .upgrade_button_red_sale{box-shadow: 0 2px 4px 0 rgba(255, 69, 70, 0.2); max-width: 350px; border: 0; border-radius: 3px; background-color: #ff4546 !important; padding: 15px 55px !important; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 600; color: #ffffff;} .upgrade_button_red_sale:hover{color: #ffffff !important; background: #d10303 !important;}",style=document.createElement("style"),sheet=window.document.styleSheets[0];style.styleSheet?style.styleSheet.cssText=css:style.appendChild(document.createTextNode(css)),document.getElementsByTagName("head")[0].appendChild(style),document.getElementsByTagName("head")[0].appendChild(googleFont);var button=document.getElementsByClassName("upgrade_button_red")[0],link=button.parentElement;link.setAttribute("href","https://www.hostinger.com/hosting-starter-offer?utm_source=000webhost&utm_medium=panel&utm_campaign=000-wp"),link.innerHTML='<button class="upgrade_button_red_sale">Claim deal</button>',(notification=notification[0]).setAttribute("style","padding-bottom: 0; padding-top: 5px; background-color: #040713; background-size: cover; background-repeat: no-repeat; color: #ffffff; border-left-color: #040713;"),notification.className="notice notice-error is-dismissible";var mainContentHolder=document.getElementById("main_content");mainContentHolder.setAttribute("style","padding: 0;"),hostingerLogo[0].remove();var h1Tag=notification.getElementsByTagName("H1")[0];h1Tag.className="000-h1",h1Tag.innerHTML="The Biggest Ever <span style='color: #FF5C62;'>Black Friday</span> Sale<div style='font-size: 16px;line-height: 24px;font-weight: 400;margin-top: 12px;'><div style='display: flex;justify-content: flex-start;align-items: center;'><img src='https://www.000webhost.com/static/default.000webhost.com/images/generic/green-check-mark.png' alt='' style='margin-right: 10px; width: 20px;'>Managed WordPress Hosting</div><div style='display: flex;justify-content: flex-start;align-items: center;'><img src='https://www.000webhost.com/static/default.000webhost.com/images/generic/green-check-mark.png' alt='' style='margin-right: 10px; width: 20px;'>WordPress Acceleration</div><div style='display: flex;justify-content: flex-start;align-items: center;'><img src='https://www.000webhost.com/static/default.000webhost.com/images/generic/green-check-mark.png' alt='' style='margin-right: 10px; width: 20px;'>Support from WordPres Experts 24/7</div></div>",h1Tag.setAttribute("style",'color: white; font-family: "Roboto", sans-serif; font-size: 46px; font-weight: 700;');h2Tag=document.createElement("H2");h2Tag.innerHTML="<span style='font-size: 20px'>$</span>2.49<span style='font-size: 20px'>/mo</span>",h2Tag.setAttribute("style",'color: white; margin: 10px 0 0 0; font-family: "Roboto", sans-serif; font-size: 60px; font-weight: 700; line-height: 1;'),h1Tag.parentNode.insertBefore(h2Tag,h1Tag.nextSibling);var paragraph=notification.getElementsByTagName("p")[0];paragraph.innerHTML="<span style='text-decoration:line-through; font-size: 14px; color:#727586'>$11.99.mo</span><br>+ 2 Months Free",paragraph.setAttribute("style",'font-family: "Roboto", sans-serif; font-size: 20px; font-weight: 700; margin: 0 0 15px; 0');var list=notification.getElementsByTagName("UL")[0];list.remove();var org_html=mainContent.innerHTML,new_html='<div class="content-wrapper">'+mainContent.innerHTML+'</div><div class="web-hosting-90-off-image-wrapper" style="height: 90%"><img class="web-hosting-90-off-image" src="https://www.000webhost.com/static/default.000webhost.com/images/sales/bf2023/hero.png"></div>';mainContent.innerHTML=new_html;var saleImage=mainContent.getElementsByClassName("web-hosting-90-off-image")[0]}else if(null!=wordpressAdminBody&¬ification.length>0&&null!=mainContent){var bulletPoints = mainContent.getElementsByTagName('li');var replacement=['Increased performance (up to 5x faster) - Thanks to Hostinger’s WordPress Acceleration and Caching solutions','WordPress AI tools - Creating a new website has never been easier','Weekly or daily backups - Your data will always be safe','Fast and dedicated 24/7 support - Ready to help you','Migration of your current WordPress sites to Hostinger is automatic and free!','Try Premium Web Hosting now - starting from $1.99/mo'];for (var i=0;i<bulletPoints.length;i++){bulletPoints[i].innerHTML = replacement[i];}}</script></body>
+</html>
